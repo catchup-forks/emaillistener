@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @author Ladybird <info@ladybirdweb.com>
  */
-class Attcahment extends Model
+class Attachment extends Model
 {
     protected $table = 'ticket_attachment';
     /**

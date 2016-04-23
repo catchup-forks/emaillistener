@@ -37,6 +37,10 @@
                     @foreach($threads as $thread)
                         <tr class="read">
 
+                            <td class="Subject">
+                                {!! $thread->title !!}
+                            </td>
+
                             <td class="contact">
                                 <a href="{!! url('readmail/'.$thread->id) !!}">
                                     {!! $thread->name !!}
@@ -47,10 +51,6 @@
                                     {!! $thread->email !!}
                                 </a>
                             </td>
-                            <td class="Subject">
-                                {!! $thread->title !!}
-                            </td>
-
                         </tr>
 
                     @endforeach

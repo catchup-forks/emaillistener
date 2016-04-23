@@ -2,6 +2,8 @@
 
 namespace App\Exceptions;
 
+// controller
+//use App\Http\Controllers\Common\PhpMailController;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -22,6 +24,20 @@ class Handler extends ExceptionHandler
     ModelNotFoundException::class,
     ValidationException::class,
   ];
+
+
+    /**
+     * Create a new controller instance.
+     * constructor to check
+     * 1. php mailer.
+     *
+     * @return void
+     */
+    // public function __construct(PhpMailController $PhpMailController)
+    // {
+    //     $this->PhpMailController = $PhpMailController;
+    // }
+
 
   /**
    * Report or log an exception.

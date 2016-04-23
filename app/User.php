@@ -4,8 +4,27 @@ namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+/*
+use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Illuminate\Database\Eloquent\Model;
+*/
+
+
+
 class User extends Authenticatable
 {
+    use Authenticatable,
+        CanResetPassword;
+
+    /**
+     * The database table used by the model.
+     *
+     * @var string
+     */
+    //protected $table = 'users';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -14,6 +33,12 @@ class User extends Authenticatable
     protected $fillable = [
         'name', 'email', 'password',
     ];
+/*
+protected $fillable = ['user_name', 'email', 'password', 'active', 'first_name', 'last_name', 'ban', 'ext', 'mobile', 'profile_pic',
+'phone_number', 'company', 'agent_sign', 'account_type', 'account_status',
+'assign_group', 'primary_dpt', 'agent_tzone', 'daylight_save', 'limit_access',
+'directory_listing', 'vacation_mode', 'role', 'internal_note', ];
+*/
 
     /**
      * The attributes excluded from the model's JSON form.

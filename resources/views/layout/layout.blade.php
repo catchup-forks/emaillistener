@@ -44,15 +44,13 @@
 
         @yield('HeadInclude')
     </head>
-    <body class="sidebar-mini wysihtml5-supported skin-purple-light fixed">
+    <body class="sidebar-mini wysihtml5-supported skin-yellow fixed">
         <div class="wrapper">
 
             <header class="main-header">
                 <!-- Logo -->
-                <a href="../../index2.html" class="logo">
-                    <!-- logo for regular state and mobile devices -->
-                    <span class="logo-lg"><b>MOMO</b> LISTENER</span>
-                </a>
+                <a href="http://www.digitaalkantoor.nl" class="logo"><img src="{{ asset('lb-faveo/media/images/logo.png') }}"
+                                                                 width="100px"></a>
                 <!-- Header Navbar: style can be found in header.less -->
                 <nav class="navbar navbar-static-top" role="navigation">
                     <!-- Sidebar toggle button-->
@@ -62,6 +60,62 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
+
+
+
+
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="navbar-collapse">
+                <ul class="nav navbar-nav navbar-left">
+                    <li @yield('settings')><a href="{!! url('admin') !!}">{!! Lang::get('lang.home') !!}</a></li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="http://www.digitaalkantoor.nl">Digitaal Kantoor (Administration)</a></li>
+                    <!-- User Account: style can be found in dropdown.less -->
+                    <li class="dropdown user user-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            @if(Auth::user())
+                                @if(Auth::user()->profile_pic)
+                                    <img src="{{asset('lb-faveo/media/profilepic')}}{{'/'}}{{Auth::user()->profile_pic}}"
+                                         class="user-image" alt="User Image"/>
+                                @else
+                                @endif
+                                <span class="hidden-xs">{!! Auth::user()->first_name." ".Auth::user()->last_name !!}</span>
+                            @endif
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- User image -->
+                            <li class="user-header" style="background-color:#343F44;">
+                                @if(Auth::user())
+                                    @if(Auth::user()->profile_pic)
+                                        <img src="{{asset('lb-faveo/media/profilepic')}}{{'/'}}{{Auth::user()->profile_pic}}"
+                                             class="img-circle" alt="User Image"/>
+                                    @else
+                                    @endif
+                                    <p>
+                                        {!! Auth::user()->first_name !!}{!! " ". Auth::user()->last_name !!}
+                                        - {{Auth::user()->role}}
+                                        <small></small>
+                                    </p>
+                                @endif
+                            </li>
+                            <!-- Menu Footer-->
+                            <li class="user-footer" style="background-color:#1a2226;">
+                                <div class="pull-left">
+                                    <a href="{{url('admin-profile')}}"
+                                       class="btn btn-info btn-sm"><b>{!! Lang::get('lang.profile') !!}</b></a>
+                                </div>
+                                <div class="pull-right">
+                                    <a href="{{url('auth/logout')}}"
+                                       class="btn btn-danger btn-sm"><b>{!! Lang::get('lang.sign_out') !!}</b></a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+  </ul>
+  </div>
                 </nav>
             </header>
             <!-- Left side column. contains the logo and sidebar -->
@@ -71,7 +125,7 @@
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu">
                         <li class="header">EMAIL</li>
-                        <li @yield('list')><a href="{!! url('emails') !!}"><i class="fa fa-book"></i> <span>List All</span></a></li>
+                        <li @yield('list')><a href="{!! url('emails') !!}"><i class="fa fa-envelope-o fa-stack-1x"></i> <span>List All</span></a></li>
                         <li @yield('create')><a href="{!! url('emails/create') !!}"><i class="fa fa-book"></i> <span>Create</span></a></li>
                         <li class="header">MAILBOX</li>
                         <li @yield('inbox')><a href="{!! url('/') !!}"><i class="fa fa-circle-o text-aqua"></i> <span>Inbox</span></a></li>
@@ -96,12 +150,14 @@
                     @yield('content')          
                 </section><!-- /.content -->
             </div><!-- /.content-wrapper -->
-            <footer class="main-footer">
-                <div class="pull-right hidden-xs">
-                    <b>Version</b> 1.0
-                </div>
-                <strong>Copyright &copy; 2016 <a href="https://www.faveohelpdesk.com"><b>FAVEO</b> HELPDESK</a>.</strong> All rights reserved. Powered by <img src="{{asset("lb-faveo/media/images/ladybird.png")}}">
-            </footer>
+    <footer class="main-footer">
+        <div class="pull-right hidden-xs">
+            <b>Version</b> {!! Config::get('app.version') !!}
+        </div>
+        <strong>{!! Lang::get('lang.copyright') !!} &copy; {!! date('Y') !!} <a
+                    href="http://localhost.com">Localhost Corp</a>.</strong> {!! Lang::get('lang.all_rights_reserved') !!}
+        . {!! Lang::get('lang.powered_by') !!} <a href="http://www.faveohelpdesk.com/">Faveo</a>
+    </footer>
             {{-- // <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> --}}
 
             <script src="{{asset("lb-faveo/js/ajax-jquery.min.js")}}"></script>
@@ -130,14 +186,32 @@
         <!-- Page Script -->
 
         {{-- // <script type="text/javascript" src="https://cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script> --}}
+
+
+
+
+
         <script type="text/javascript" src="{{asset("lb-faveo/js/jquery.dataTables1.10.10.min.js")}}"></script>
 
         <script type="text/javascript" src="{{asset("lb-faveo/plugins/datatables/dataTables.bootstrap.js")}}"></script>
+
+
+
+
+
+
+
         <script src="{{asset("lb-faveo/js/jquery.rating.pack.js")}}" type="text/javascript"></script>
 
         <script src="{{asset("lb-faveo/plugins/select2/select2.full.min.js")}}" ></script>
 
         <script>
+    $(function () {
+        //Add text editor
+        $("textarea").wysihtml5();
+    });
+
+
             $(function () {
                 // Enable iCheck plugin for checkboxes
                 // iCheck for checkbox and radio inputs

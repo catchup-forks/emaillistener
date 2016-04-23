@@ -27,7 +27,12 @@
 
     @stop
             <!-- /header -->
-
+    <!-- breadcrumbs -->
+@section('breadcrumbs')
+    <ol class="breadcrumb">
+    </ol>
+    @stop
+            <!-- /breadcrumbs -->
 
 
 
@@ -50,6 +55,14 @@
                 </div>
             </div>
             <div class="box-body">
+                <div class="row">
+                    <div class="col-xs-3 form-group {!! $errors->has('mailbox_type') ? 'has-error' : ''!!}"
+                         id="fetching_encryption_error">
+                        {!! Form::label('mailbox_type',Lang::get('lang.mailboxtype')) !!}
+                        {!! $errors->first('mailbox_type', '<span class="help-block">:message</span>') !!}
+                        {!!Form::select('mailbox_type',['imap' => 'Imap', 'office365' => 'Office 365', 'gmail' => 'Gmail', 'exchange' => 'Exchange (later than 2007)'],null,['class' => 'form-control select', 'id' => 'mailbox_type']) !!}
+                    </div>
+                </div>
                 <div class="row">
                     <!-- email address -->
                     <div class="col-xs-4 form-group {!! $errors->has('email_address') ? 'has-error' : '' !!}"
