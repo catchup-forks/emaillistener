@@ -66,3 +66,9 @@ Route::PUT('validating-email-settings-on-update/{id}', ['as' => 'validating.emai
 //    }
 //    echo '</table>';
 //});
+
+Route::group(['middleware' => 'web'], function () {
+    Route::auth();
+
+    Route::get('/home', 'HomeController@index');
+});
